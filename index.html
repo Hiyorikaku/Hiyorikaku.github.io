@@ -1,10 +1,142 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-    <title>Hiyori's Website</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ひよりのギャラリー</title>
+  <style>
+    /* 全域樣式 */
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+      background-color: #f2f2f0; /* 莫蘭迪白 */
+      color: #333;
+      scroll-behavior: smooth; /* 平滑捲動 */
+    }
+
+    /* 頂部選單 */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 10px 20px;
+      display: flex;
+      justify-content: flex-end;
+      z-index: 1000;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #555;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #000;
+    }
+
+    /* 首頁標題 */
+    .hero {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 1.5s ease-out forwards;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      color: #444;
+      letter-spacing: 2px;
+    }
+
+    /* 滑動後的內容 */
+    .content {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .gradient-box {
+      width: 80%;
+      max-width: 900px;
+      padding: 50px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #d8e2dc, #ffe5d9, #ffcad4, #f4acb7);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease-out;
+    }
+
+    .gradient-box.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .gradient-box h2 {
+      margin: 0 0 20px;
+      font-size: 2rem;
+    }
+
+    .gradient-box p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    /* 動畫 keyframes */
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Hello, I'm Hiyori 👋</h1>
-    <p>This is my first website!</p>
+  <!-- 頂部選單 -->
+  <nav>
+    <a href="#">首頁</a>
+    <a href="#works">作品</a>
+    <a href="#about">關於我</a>
+    <a href="#contact">聯絡</a>
+  </nav>
+
+  <!-- 首頁標題區塊 -->
+  <section class="hero">
+    <h1>ひよりのギャラリー</h1>
+  </section>
+
+  <!-- 滑動後的漸層方塊 -->
+  <section class="content" id="works">
+    <div class="gradient-box">
+      <h2>歡迎來到我的畫廊</h2>
+      <p>
+        這裡展示了我的作品與靈感，希望能帶給您一些美好的時光。  
+        請慢慢欣賞，探索更多藝術的可能性。
+      </p>
+    </div>
+  </section>
+
+  <script>
+    // 讓漸層方塊在滑入時淡入
+    const box = document.querySelector('.gradient-box');
+    window.addEventListener('scroll', () => {
+      const rect = box.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) {
+        box.classList.add('visible');
+      }
+    });
+  </script>
 </body>
 </html>
